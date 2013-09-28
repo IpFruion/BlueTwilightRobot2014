@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir=".." name="BTRobot2014Dev">
+    <property file="nbproject/nbjdk.properties"/>
+    <property location="${netbeans.user}/build.properties" name="user.properties.file"/>
+    <property file="${user.properties.file}"/>
+    <import file="jdk.xml"/>
+    <target depends="-jdk-init" name="jar-app">
+        <ant inheritall="false" target="jar-app"/>
+    </target>
+    <target depends="-jdk-init" name="clean">
+        <ant inheritall="false" target="clean"/>
+    </target>
+    <target depends="-jdk-init" name="deploy">
+        <ant inheritall="false" target="deploy"/>
+    </target>
+    <target depends="-jdk-init" name="run">
+        <ant inheritall="false" target="run"/>
+    </target>
+    <target depends="-jdk-init,-jdk-presetdef-nbjpdastart" name="debug-run">
+        <ant inheritall="false" target="debug-run"/>
+    </target>
+    <target depends="-jdk-init" name="javadoc">
+        <ant inheritall="false" target="javadoc"/>
+    </target>
+</project>
