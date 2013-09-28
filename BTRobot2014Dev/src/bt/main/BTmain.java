@@ -5,7 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package edu.wpi.first.wpilibj.templates;
+package bt.main;
 
 import edu.wpi.first.wpilibj.SimpleRobot;
 
