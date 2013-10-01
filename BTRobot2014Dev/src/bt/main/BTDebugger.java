@@ -2,18 +2,15 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package bt.control;
+package bt.main;
 
 /**
  *
  * @author Dlock
  */
-public class BTControlBoard {
-    public BTControlBoard()
-    {
-        
-    }
-    public void update()
+public class BTDebugger {
+    
+    public BTDebugger()
     {
         
     }

@@ -7,6 +7,7 @@
 
 package bt.main;
 
+import bt.control.BTControlBoard;
 import edu.wpi.first.wpilibj.SimpleRobot;
 
 
@@ -20,24 +21,26 @@ import edu.wpi.first.wpilibj.SimpleRobot;
  * directory.
  */
 public class BTmain extends SimpleRobot {
-    /**
-     * This function is called once each time the robot enters autonomous mode.
-     */
-    public void autonomous() {
+    public BTControlBoard cb;
+    public BTDebugger debug;
+    
+    public void initRobot()
+    {
+        
+    }
+    
+    public void autonomous() 
+    {
         
     }
 
-    /**
-     * This function is called once each time the robot enters operator control.
-     */
-    public void operatorControl() {
+    public void operatorControl() 
+    {
 
     }
     
-    /**
-     * This function is called once each time the robot enters test mode.
-     */
-    public void test() {
-    
+    public void Disabled()
+    {
+        
     }
 }
