@@ -26,7 +26,12 @@ public class BTmain extends SimpleRobot {
     
     public void initRobot()
     {
+        debug = new BTDebugger();
+        debug.write(Constants.LOCATION_ARR[0], Constants.SEVERITY_ARR[0], "Robot Init Started");
         
+        cb = new BTControlBoard(debug);
+        
+        debug.write(Constants.LOCATION_ARR[0], Constants.SEVERITY_ARR[0], "Robot Init Ended");
     }
     
     public void autonomous() 
@@ -36,11 +41,15 @@ public class BTmain extends SimpleRobot {
 
     public void operatorControl() 
     {
-
+        debug.write(Constants.LOCATION_ARR[0], Constants.SEVERITY_ARR[0], "Is Operator Control Start");
+        while (isOperatorControl())
+        {
+            
+        }
     }
     
     public void Disabled()
     {
-        
+        debug.write(Constants.LOCATION_ARR[0], Constants.SEVERITY_ARR[0], "In Disabled Mode");
     }
 }

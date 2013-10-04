@@ -14,4 +14,10 @@ public interface Constants {
     
     //B MAP
     public static final int A_BUTTON = 1;
+    
+    //Debugger Locations
+    public static final int DEBUG_LOCATION_AMOUNT = 1;
+    public static final int DEBUG_CAP_LIMIT = 100;
+    public static final String[] LOCATION_ARR = {"BTmain","Drive Train","Collector","Low Climber"};
+    public static final String[] SEVERITY_ARR = {"Information","Warning","SEVERE"};
 }
