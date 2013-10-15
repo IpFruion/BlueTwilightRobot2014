@@ -31,7 +31,7 @@ public interface Constants {
     public static final int LEFT_STICK_UP_DOWN_PORT = 2;
     public static final int LEFT_STICK_LEFT_RIGHT_PORT = 1;
     public static final int RIGHT_STICK_UP_DOWN_PORT = 5;
-    public static final int RIGHT_STICK_LEFT_STICK_PORT = 4;
+    public static final int RIGHT_STICK_LEFT_RIGHT_PORT = 4;
     public static final int TRIGGER_PORT = 3;
     public static final double LEFT_TRIGGER = 1.0;
     public static final double RIGHT_TRIGGER = -1.0;

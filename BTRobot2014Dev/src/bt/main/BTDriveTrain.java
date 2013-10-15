@@ -19,6 +19,7 @@ public class BTDriveTrain {
     BTMotor right_2;
     double leftSpeed = 0;
     double rightSpeed = 0;
+    
     public BTDriveTrain(BTStorage store)
     {
         storage = store;
@@ -36,6 +37,11 @@ public class BTDriveTrain {
     
     public void update()
     {
+        tankDrive();
+        //fpsDrive();
+    }
+    public void tankDrive()
+    {
         leftSpeed = storage.xbox.AXES[Constants.LEFT_STICK_UP_DOWN_PORT];
         rightSpeed = storage.xbox.AXES[Constants.RIGHT_STICK_UP_DOWN_PORT];
         
@@ -48,5 +54,21 @@ public class BTDriveTrain {
         left_2.setX(leftSpeed);
         right.setX(-rightSpeed);
         right_2.setX(-rightSpeed);
+    }
+    public void fpsDrive()
+    {
+        leftSpeed = storage.xbox.AXES[Constants.LEFT_STICK_UP_DOWN_PORT];
+        rightSpeed = storage.xbox.AXES[Constants.RIGHT_STICK_LEFT_RIGHT_PORT];
+        
+        
+        left.setX(leftSpeed);
+        left_2.setX(leftSpeed);
+        right.setX(-leftSpeed);
+        right_2.setX(-leftSpeed);
+        
+        left.setX(rightSpeed);
+        left_2.setX(rightSpeed);
+        right.setX(rightSpeed);
+        right_2.setX(rightSpeed);
     }
 }
