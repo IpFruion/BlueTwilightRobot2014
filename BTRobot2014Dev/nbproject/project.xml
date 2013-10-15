@@ -54,6 +54,7 @@
             <export>
                 <type>folder</type>
                 <location>build</location>
+                <script>nbproject/nbjdk.xml</script>
                 <build-target>jar-app</build-target>
             </export>
             <view>

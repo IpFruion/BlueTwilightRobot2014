@@ -8,8 +8,8 @@
 package bt.main;
 
 import bt.control.BTControlBoard;
+import bt.storage.BTStorage;
 import edu.wpi.first.wpilibj.SimpleRobot;
-
 
 
 
@@ -22,16 +22,20 @@ import edu.wpi.first.wpilibj.SimpleRobot;
  */
 public class BTmain extends SimpleRobot {
     public BTControlBoard cb;
-    public BTDebugger debug;
-    
-    public void initRobot()
+    public BTStorage storage;
+    public BTSmartGUI gui;
+    private boolean isInit = false;
+    public void robotInit()
     {
-        debug = new BTDebugger();
-        debug.write(Constants.LOCATION_ARR[0], Constants.SEVERITY_ARR[0], "Robot Init Started");
+        isInit = true;
         
-        cb = new BTControlBoard(debug);
+        storage = new BTStorage();
         
-        debug.write(Constants.LOCATION_ARR[0], Constants.SEVERITY_ARR[0], "Robot Init Ended");
+        storage.debug.write(Constants.LOCATION_ARR[0], Constants.SEVERITY_ARR[0], "Robot Init Started");
+        gui = new BTSmartGUI(storage);
+        cb = new BTControlBoard(storage);
+        
+        storage.debug.write(Constants.LOCATION_ARR[0], Constants.SEVERITY_ARR[0], "Robot Init Ended");
     }
     
     public void autonomous() 
@@ -41,15 +45,29 @@ public class BTmain extends SimpleRobot {
 
     public void operatorControl() 
     {
-        debug.write(Constants.LOCATION_ARR[0], Constants.SEVERITY_ARR[0], "Is Operator Control Start");
+        storage.debug.write(Constants.LOCATION_ARR[0], Constants.SEVERITY_ARR[0], "Is Operator Control Start");
         while (isOperatorControl())
         {
+            //can be moved incase of latency
+            storage.xbox.update();
             
+            cb.update();
+            gui.update();
+            
+            storage.data.updateCycles();
         }
     }
     
-    public void Disabled()
+    public void disabled()
     {
-        debug.write(Constants.LOCATION_ARR[0], Constants.SEVERITY_ARR[0], "In Disabled Mode");
+        if(isInit)
+        {
+            storage.debug.write(Constants.LOCATION_ARR[0], Constants.SEVERITY_ARR[0], "In Disabled Mode");
+            if (Constants.DEBUG_DURING_DISABLED)
+            {
+                storage.debug.write(Constants.LOCATION_ARR[0], Constants.SEVERITY_ARR[0], "Printing Debug Output");
+                storage.debug.printDebugWARNING();
+            }
+        }
     }
 }
