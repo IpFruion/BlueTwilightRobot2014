@@ -39,7 +39,8 @@ public interface Constants {
     public static final double LEFT_DPAD = -1.0;
     public static final double RIGHT_DPAD = 1.0;
 
-    
+    //SmartDashboard
+    public static final int CAP_LIMIT_OUTPUT = 10;
     
     //Debugger Constants
     public static final int DEBUG_LOCATION_AMOUNT = 1;
