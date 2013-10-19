@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
 
     This is a sample netbeans project file for a Sun Spot Application project.
@@ -9,7 +9,7 @@
     <type>org.netbeans.modules.ant.freeform</type>
     <configuration>
         <general-data xmlns="http://www.netbeans.org/ns/freeform-project/1">
-            <name>BTRobot2014Dev</name>
+            <name>BTRobot2014Derrick</name>
             <properties>
                 <property-file>${user.home}/.sunspotfrc.properties</property-file>
                 <property-file>build.properties</property-file>

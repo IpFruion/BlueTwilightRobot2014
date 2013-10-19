@@ -65,4 +65,6 @@ public interface Constants {
     public static final int LEFT_2_MOTOR_PORT = 1;
     public static final int RIGHT_2_MOTOR_PORT = 2;
     public static final int VOLTAGE_RAMP_RATE = 50;
+    public static final int SHIFTER_EXTEND_PORT = 1;
+    public static final int SHIFTER_RETRACT_PORT = 2;
 }
