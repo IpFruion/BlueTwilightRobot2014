@@ -31,7 +31,7 @@ public class BTData {
         //DRIVETRAIN DATA
         if (Constants.IS_DT_CANBUS)
         {
-            motorFactDT = new BTCanJaguar.Factory(Constants.IS_DT_VOLTAGE);
+            motorFactDT = new BTCanJaguar.Factory(Constants.IS_DT_VOLTAGE,debug);
         }
         else
         {

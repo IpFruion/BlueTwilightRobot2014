@@ -22,10 +22,8 @@ public class BTJaguar implements BTMotor {
     }
     public static class Factory implements BTMotorFactory
     {
-
         public BTMotor makeMotor(int port) {
             return new BTJaguar(port);
         }
-        
     }
 }

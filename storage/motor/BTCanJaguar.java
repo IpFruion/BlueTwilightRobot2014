@@ -4,6 +4,8 @@
  */
 package bt.storage.motor;
 
+import bt.storage.BTDebugger;
+import bt.storage.Constants;
 import edu.wpi.first.wpilibj.CANJaguar;
 import edu.wpi.first.wpilibj.can.CANTimeoutException;
 
@@ -14,15 +16,19 @@ import edu.wpi.first.wpilibj.can.CANTimeoutException;
 public class BTCanJaguar implements BTMotor {
     private CANJaguar motor;
     private boolean isVoltage;
+    private BTDebugger debug;
+    private int port;
     
-    private BTCanJaguar(int port, boolean isVoltage)
+    private BTCanJaguar(int port, boolean isVoltage, BTDebugger debug)
     {
         this.isVoltage = isVoltage;
+        this.debug = debug;
+        this.port = port;
         setVoltageMode(isVoltage);
         try {
             motor = new CANJaguar(port);
         } catch (CANTimeoutException ex) {
-            
+            debug.write(Constants.DebugLocation.BTMotor, Constants.Severity.SEVERE, "ERROR: Motor not initiated at port: "+port);
         }
     }
     private void setVoltageMode(boolean isVoltage)
@@ -44,7 +50,7 @@ public class BTCanJaguar implements BTMotor {
         try {
             motor.setX(x);
         } catch (CANTimeoutException ex) {
-            
+            debug.write(Constants.DebugLocation.BTMotor, Constants.Severity.SEVERE, "Can't set val: "+x+" at port: "+port);
         }
     }
 
@@ -85,16 +91,19 @@ public class BTCanJaguar implements BTMotor {
     public static class Factory implements BTMotorFactory
     {
         private boolean isVoltage;
+        private BTDebugger debug;
         public BTMotor makeMotor(int port) {
-            return new BTCanJaguar(port,isVoltage);
+            return new BTCanJaguar(port,isVoltage, debug);
         }
-        public Factory(boolean isVoltage)
+        public Factory(boolean isVoltage, BTDebugger debug)
         {
             this.isVoltage = isVoltage;
+            this.debug = debug;
         }
-        public Factory()
+        public Factory(BTDebugger debug)
         {
             this.isVoltage = false;
+            this.debug = debug;
         }
     }
 }
