@@ -7,6 +7,6 @@ For the zipped Versions of our code:
 	x.y.z
 	x = Major Version updates
 	y = Modules additions (DriveTrain, Manipulator, etc…)
-	z = Evens are stable builds odds are unstable
+	z = Evens are stable builds Odds are unstable, Zero are stable
 	Stable Builds are tested
 	Unstable Builds are untested
