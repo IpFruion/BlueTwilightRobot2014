@@ -57,6 +57,26 @@ public class BTHealthCheck {
        HEALTH_DATA[id][pos].valname = valname;
        HEALTH_DATA[id][pos].val = val;
     }
+    public void updateStat(String idname, BTStatistic stat)
+    {
+       int pos;
+       int id = getIDViaName(idname);
+       if (id < 0)
+       {
+           debug.write(Constants.DebugLocation.BTHealthCheck, 
+                        Constants.Severity.WARNING, 
+                        "Invalid IDname: "+idname+"\nWhile Adding "+stat.valname+":"+stat.val+"\nCreating New id and adding statistic");
+           setupHealthClass(idname);
+           id = getIDViaName(idname);
+       }
+       pos = getPosViaName(id,stat.valname);
+       if (pos == -1)
+       {
+           addStat(id, stat);
+           return;
+       }
+       HEALTH_DATA[id][pos]= stat;
+    }
     public void updateStat(String idname, String valname, String val)
     {
        int pos;
@@ -106,6 +126,11 @@ public class BTHealthCheck {
     {
        addPosAt(id);
        HEALTH_DATA[id][HEALTH_DATA[id].length-1] = new BTStatistic(valname,val,isDisplayed);
+    }
+    private void addStat(int id, BTStatistic stat)
+    {
+       addPosAt(id);
+       HEALTH_DATA[id][HEALTH_DATA[id].length-1] = stat;
     }
     private void addPosAt(int id) 
     {
@@ -166,7 +191,7 @@ public class BTHealthCheck {
             }
         }
     }
-    private class BTStatistic
+    public static class BTStatistic
     {
         public String valname;
         public String val;

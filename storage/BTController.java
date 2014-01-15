@@ -40,13 +40,48 @@ public class BTController
     public final class Button
     {
         int port;
+        boolean prevVal = false;
         public Button(int port)
         {
             this.port = port;
         }
         public boolean getBoolVal()
         {
-            return xbox.getRawButton(port);
+            prevVal = xbox.getRawButton(port);
+            return prevVal;
+        }
+        public boolean getLeadingEdge()
+        {
+            boolean current = xbox.getRawButton(port);
+            boolean state = false;
+            if (!prevVal && current)
+            {
+                state = true;
+            }
+            prevVal = current;
+            return state;
+        }
+        public boolean getBackEdge()
+        {
+            boolean current = xbox.getRawButton(port);
+            boolean state = false;
+            if (prevVal && !current)
+            {
+                state = true;
+            }
+            prevVal = current;
+            return state;
+        }
+        public boolean getContinousEdge()
+        {
+            boolean current = xbox.getRawButton(port);
+            boolean state = false;
+            if (prevVal && current)
+            {
+                state = true;
+            }
+            prevVal = current;
+            return state;
         }
     }
     public final class Axis
