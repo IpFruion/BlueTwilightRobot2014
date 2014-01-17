@@ -55,6 +55,8 @@ public class BTDebugger {
         {
             if (DEBUGARR[x][0] != null)
                 System.out.println("["+DEBUGARR[x][0]+"]["+DEBUGARR[x][1]+"]["+DEBUGARR[x][2]+"]: "+DEBUGARR[x][3]);
+            else
+                return;
         }
     }
     

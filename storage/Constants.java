@@ -131,7 +131,8 @@ public interface Constants {
     public static final int LEFT_ENCODE_B = 2;
     public static final int RIGHT_ENCODE_A = 3;
     public static final int RIGHT_ENCODE_B = 4;
-    
+    public static final double WHEEL_CIRCUMFERENCE = 1;
+    public static final double ENCODER_TEETH = 360; 
     //Manipulator
     //TODO: Create Manipulator Constants
     

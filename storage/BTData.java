@@ -41,12 +41,22 @@ public class BTData {
         Rmotor2 = motorFactDT.makeMotor(Constants.RIGHT_MOTOR_2_PORT);
         Lmotor1 = motorFactDT.makeMotor(Constants.LEFT_MOTOR_1_PORT);
         Lmotor2 = motorFactDT.makeMotor(Constants.LEFT_MOTOR_2_PORT);
-        //left_encode = new Encoder(Constants.LEFT_ENCODE_A, Constants.LEFT_ENCODE_B);
-        //right_encode = new Encoder(Constants.RIGHT_ENCODE_A, Constants.RIGHT_ENCODE_B);
+        
+        left_encode = new Encoder(Constants.LEFT_ENCODE_A, Constants.LEFT_ENCODE_B);
+        right_encode = new Encoder(Constants.RIGHT_ENCODE_A, Constants.RIGHT_ENCODE_B);
+        left_encode.setDistancePerPulse(Constants.WHEEL_CIRCUMFERENCE/Constants.ENCODER_TEETH);
+        right_encode.setDistancePerPulse(Constants.WHEEL_CIRCUMFERENCE/Constants.ENCODER_TEETH);
     }
     public void updateCycles()
     {
         CYCLE++;
         TIME = System.currentTimeMillis()-STIME;
+    }
+    public double getCyclesperSecond()
+    {
+        long tempTime = TIME;
+        updateCycles();
+        double cperS = CYCLE/TIME;
+        return cperS;
     }
 }
