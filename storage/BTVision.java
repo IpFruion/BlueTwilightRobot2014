@@ -4,6 +4,7 @@
  */
 package bt.storage;
 
+import bt.storage.health.BTStatGroup;
 import edu.wpi.first.wpilibj.camera.AxisCamera;
 import edu.wpi.first.wpilibj.camera.AxisCameraException;
 import edu.wpi.first.wpilibj.image.*;
@@ -14,6 +15,7 @@ import edu.wpi.first.wpilibj.image.*;
  */
 public class BTVision {
     private BTStorage storage;
+    private BTStatGroup visionStat;
     private AxisCamera cam = AxisCamera.getInstance();
     private ColorImage image;
     private BinaryImage thresholdImage;
@@ -26,7 +28,7 @@ public class BTVision {
     public BTVision(BTStorage storage)
     {
         this.storage = storage;
-        storage.health.setupHealthClass("BTVision");
+        visionStat = new BTStatGroup("BTVision");
         //Criteria for rectangle we are trying to find:
         cc.addCriteria(NIVision.MeasurementType.IMAQ_MT_BOUNDING_RECT_WIDTH, Constants.CAM_WIDTH_LOW , Constants.CAM_WIDTH_HIGH, false);
         cc.addCriteria(NIVision.MeasurementType.IMAQ_MT_BOUNDING_RECT_HEIGHT, Constants.CAM_HEIGHT_LOW, Constants.CAM_HEIGHT_HIGH, false);
