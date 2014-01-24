@@ -30,6 +30,10 @@ public class BTCanJaguar implements BTMotor {
         } catch (CANTimeoutException ex) {
             debug.write(Constants.DebugLocation.BTMotor, Constants.Severity.SEVERE, "ERROR: Motor not initiated at port: "+port);
         }
+        catch (Exception e)
+        {
+            debug.write(Constants.DebugLocation.BTMotor, Constants.Severity.SEVERE, "ERROR: Motor not initiated at port: "+port+" Exception: "+e.getMessage());
+        }
     }
     private void setVoltageMode(boolean isVoltage)
     {

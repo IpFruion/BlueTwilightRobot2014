@@ -12,8 +12,8 @@ public interface Constants {
     public static final int XBOX_CONTROLLER_PORT = 1;
     public static final int XBOX_CONTROLLER_BUTTONS = 10;
     public static final int XBOX_CONTROLLER_AXES = 10;
-    public static final int COMP_SENSOR_PORT = 14;
-    public static final int COMP_RELAY_PORT = 2;
+    public static final int COMP_SENSOR_PORT = 2;
+    public static final int COMP_RELAY_PORT = 1;
     
     //B MAP
     public static final int A_BUTTON = 1;
@@ -93,7 +93,7 @@ public interface Constants {
         
     }
     
-    public static final boolean DEBUGMODE = false;
+    public static final boolean DEBUGMODE = true;
     public static final boolean DEBUG_DURING_DISABLED = false;
     public static final boolean SMARTDASHBOARD_DEBUG = false;
     public static final boolean SPEEDDEBUG = false;
@@ -122,9 +122,9 @@ public interface Constants {
     
     //DriveTrain
     public static final int RIGHT_MOTOR_1_PORT = 2;
-    public static final int RIGHT_MOTOR_2_PORT = 5;
-    public static final int LEFT_MOTOR_1_PORT = 1;
-    public static final int LEFT_MOTOR_2_PORT = 4;
+    public static final int RIGHT_MOTOR_2_PORT = 3;
+    public static final int LEFT_MOTOR_1_PORT = 4;
+    public static final int LEFT_MOTOR_2_PORT = 5;
     public static final boolean IS_DT_CANBUS = true;
     public static final boolean IS_DT_VOLTAGE = false;
     public static final int LEFT_ENCODE_A = 1;
@@ -134,7 +134,18 @@ public interface Constants {
     public static final double WHEEL_CIRCUMFERENCE = 1;
     public static final double ENCODER_TEETH = 360; 
     //Manipulator
-    //TODO: Create Manipulator Constants
+    public static final boolean IS_SHOOTER_CANBUS = true;
+    public static final boolean IS_SHOOTER_VOLTAGE = false;
+    public static final int SHOOTER_MOTOR_PORT = 8;
+    public static final int RELOAD_MOTOR_PORT = 6;
+    public static final int HINGE_MOTOR_PORT = 7;
+    public static final int MANIP_SHOOT_ENCODE_A = 1;
+    public static final int MANIP_SHOOT_ENCODE_B = 2;
+    public static final double MANIP_WHEEL_CIRCUMFERENCE = 0;
+    public static final int MANIP_RELEASE_EXTEND_PORT = 2;
+    public static final int MANIP_RELEASE_RETRACT_PORT = 3;
+    public static final int COLLECTOR_PISTON_EXTEND_PORT = 2;
+    public static final int COLLECTOR_PISTON_RETRACT_PORT = 3;
     
     //Climber
     //TODO: Creat Climber Constants

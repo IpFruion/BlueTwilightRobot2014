@@ -19,16 +19,25 @@ public class BTData {
     public long TIME = 0;
     public long STIME = 0;
     public BTMotorFactory motorFactDT;
+    public BTMotorFactory motorFactManip;
     public BTMotor Rmotor1;
     public BTMotor Rmotor2;
     public BTMotor Lmotor1;
     public BTMotor Lmotor2;
+    public BTMotor manipWinch;
+    public BTMotor reloadMotor;
+    public BTMotor hingeMotor;
+    
     public Encoder left_encode;
     public Encoder right_encode;
+    public Encoder manip_shoot_encode;
+    
+    public BTPiston manipRelease;
+    public BTPiston collectorPiston;
     
     public BTData(BTDebugger debug)
     {
-        //DRIVETRAIN DATA
+        //DRIVETRAIN MOTORS
         if (Constants.IS_DT_CANBUS)
         {
             motorFactDT = new BTCanJaguar.Factory(Constants.IS_DT_VOLTAGE,debug);
@@ -37,15 +46,34 @@ public class BTData {
         {
             motorFactDT = new BTJaguar.Factory();
         }
+        if (Constants.IS_SHOOTER_CANBUS)
+        {
+            motorFactManip = new BTCanJaguar.Factory(Constants.IS_SHOOTER_CANBUS, debug);
+        }
+        else
+        {
+            motorFactManip = new BTJaguar.Factory();
+        }
         Rmotor1 = motorFactDT.makeMotor(Constants.RIGHT_MOTOR_1_PORT);
         Rmotor2 = motorFactDT.makeMotor(Constants.RIGHT_MOTOR_2_PORT);
         Lmotor1 = motorFactDT.makeMotor(Constants.LEFT_MOTOR_1_PORT);
         Lmotor2 = motorFactDT.makeMotor(Constants.LEFT_MOTOR_2_PORT);
         
+        //SHOOTER MOTORS
+        manipWinch = motorFactManip.makeMotor(Constants.SHOOTER_MOTOR_PORT);
+        reloadMotor = motorFactManip.makeMotor(Constants.RELOAD_MOTOR_PORT);
+        hingeMotor = motorFactManip.makeMotor(Constants.HINGE_MOTOR_PORT);
+        //DRIVETRAIN ENCODERS
 //        left_encode = new Encoder(Constants.LEFT_ENCODE_A, Constants.LEFT_ENCODE_B);
 //        right_encode = new Encoder(Constants.RIGHT_ENCODE_A, Constants.RIGHT_ENCODE_B);
 //        left_encode.setDistancePerPulse(Constants.WHEEL_CIRCUMFERENCE/Constants.ENCODER_TEETH);
 //        right_encode.setDistancePerPulse(Constants.WHEEL_CIRCUMFERENCE/Constants.ENCODER_TEETH);
+        manip_shoot_encode = new Encoder(Constants.MANIP_SHOOT_ENCODE_A, Constants.MANIP_SHOOT_ENCODE_B);
+        manip_shoot_encode.setDistancePerPulse(Constants.MANIP_WHEEL_CIRCUMFERENCE/Constants.ENCODER_TEETH);
+        
+        //SHOOTER PISTON
+        manipRelease = new BTPiston(Constants.MANIP_RELEASE_EXTEND_PORT,Constants.MANIP_RELEASE_RETRACT_PORT);
+        collectorPiston = new BTPiston(Constants.COLLECTOR_PISTON_EXTEND_PORT,Constants.COLLECTOR_PISTON_RETRACT_PORT);
     }
     public void updateCycles()
     {
