@@ -132,16 +132,19 @@ public interface Constants {
     public static final int RIGHT_ENCODE_A = 3;
     public static final int RIGHT_ENCODE_B = 4;
     public static final double WHEEL_CIRCUMFERENCE = 1;
-    public static final double ENCODER_TEETH = 360; 
+    public static final double DT_RAMPRATE = 50;
+    
+    public static final double ENCODER_TEETH = 128;
+    
     //Manipulator
     public static final boolean IS_SHOOTER_CANBUS = true;
     public static final boolean IS_SHOOTER_VOLTAGE = false;
-    public static final int SHOOTER_MOTOR_PORT = 8;
-    public static final int RELOAD_MOTOR_PORT = 6;
+    public static final int WINCH_MOTOR_PORT = 6;
+    public static final int RELOAD_MOTOR_PORT = 8;
     public static final int HINGE_MOTOR_PORT = 7;
-    public static final int MANIP_SHOOT_ENCODE_A = 1;
-    public static final int MANIP_SHOOT_ENCODE_B = 2;
-    public static final double MANIP_WHEEL_CIRCUMFERENCE = 0;
+    public static final int MANIP_SHOOT_ENCODE_A = 3;
+    public static final int MANIP_SHOOT_ENCODE_B = 4;
+    public static final double MANIP_WHEEL_CIRCUMFERENCE = Math.PI*2;
     public static final int MANIP_RELEASE_EXTEND_PORT = 2;
     public static final int MANIP_RELEASE_RETRACT_PORT = 3;
     public static final int COLLECTOR_PISTON_EXTEND_PORT = 2;

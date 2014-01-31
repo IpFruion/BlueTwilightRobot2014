@@ -15,15 +15,13 @@ import edu.wpi.first.wpilibj.Encoder;
  * @author Dlock
  */
 public class BTData {
-    public double CYCLE = 0;
-    public long TIME = 0;
-    public long STIME = 0;
+    
     public BTMotorFactory motorFactDT;
     public BTMotorFactory motorFactManip;
-    public BTMotor Rmotor1;
-    public BTMotor Rmotor2;
-    public BTMotor Lmotor1;
-    public BTMotor Lmotor2;
+    public BTCanJaguar Rmotor1;
+    public BTCanJaguar Rmotor2;
+    public BTCanJaguar Lmotor1;
+    public BTCanJaguar Lmotor2;
     public BTMotor manipWinch;
     public BTMotor reloadMotor;
     public BTMotor hingeMotor;
@@ -44,25 +42,30 @@ public class BTData {
         }
         else
         {
-            motorFactDT = new BTJaguar.Factory();
+            motorFactDT = new BTJaguar.Factory(debug);
         }
         if (Constants.IS_SHOOTER_CANBUS)
         {
-            motorFactManip = new BTCanJaguar.Factory(Constants.IS_SHOOTER_CANBUS, debug);
+            motorFactManip = new BTCanJaguar.Factory(Constants.IS_SHOOTER_VOLTAGE, debug);
         }
         else
         {
-            motorFactManip = new BTJaguar.Factory();
+            motorFactManip = new BTJaguar.Factory(debug);
         }
-        Rmotor1 = motorFactDT.makeMotor(Constants.RIGHT_MOTOR_1_PORT);
-        Rmotor2 = motorFactDT.makeMotor(Constants.RIGHT_MOTOR_2_PORT);
-        Lmotor1 = motorFactDT.makeMotor(Constants.LEFT_MOTOR_1_PORT);
-        Lmotor2 = motorFactDT.makeMotor(Constants.LEFT_MOTOR_2_PORT);
+        Rmotor1 = motorFactDT.makeCanMotor(Constants.RIGHT_MOTOR_1_PORT);
+        Rmotor2 = motorFactDT.makeCanMotor(Constants.RIGHT_MOTOR_2_PORT);
+        Lmotor1 = motorFactDT.makeCanMotor(Constants.LEFT_MOTOR_1_PORT);
+        Lmotor2 = motorFactDT.makeCanMotor(Constants.LEFT_MOTOR_2_PORT);
+        
+        Rmotor1.setBTVoltageRampRate(Constants.DT_RAMPRATE);
+        Rmotor2.setBTVoltageRampRate(Constants.DT_RAMPRATE);
+        Lmotor1.setBTVoltageRampRate(Constants.DT_RAMPRATE);
+        Lmotor2.setBTVoltageRampRate(Constants.DT_RAMPRATE);
         
         //SHOOTER MOTORS
-        manipWinch = motorFactManip.makeMotor(Constants.SHOOTER_MOTOR_PORT);
-        reloadMotor = motorFactManip.makeMotor(Constants.RELOAD_MOTOR_PORT);
-        hingeMotor = motorFactManip.makeMotor(Constants.HINGE_MOTOR_PORT);
+        manipWinch = motorFactManip.makeMotor(Constants.WINCH_MOTOR_PORT);
+//        reloadMotor = motorFactManip.makeMotor(Constants.RELOAD_MOTOR_PORT);
+//        hingeMotor = motorFactManip.makeMotor(Constants.HINGE_MOTOR_PORT);
         //DRIVETRAIN ENCODERS
 //        left_encode = new Encoder(Constants.LEFT_ENCODE_A, Constants.LEFT_ENCODE_B);
 //        right_encode = new Encoder(Constants.RIGHT_ENCODE_A, Constants.RIGHT_ENCODE_B);
@@ -72,19 +75,16 @@ public class BTData {
         manip_shoot_encode.setDistancePerPulse(Constants.MANIP_WHEEL_CIRCUMFERENCE/Constants.ENCODER_TEETH);
         
         //SHOOTER PISTON
-        manipRelease = new BTPiston(Constants.MANIP_RELEASE_EXTEND_PORT,Constants.MANIP_RELEASE_RETRACT_PORT);
-        collectorPiston = new BTPiston(Constants.COLLECTOR_PISTON_EXTEND_PORT,Constants.COLLECTOR_PISTON_RETRACT_PORT);
+//        manipRelease = new BTPiston(Constants.MANIP_RELEASE_EXTEND_PORT,Constants.MANIP_RELEASE_RETRACT_PORT);
+//        collectorPiston = new BTPiston(Constants.COLLECTOR_PISTON_EXTEND_PORT,Constants.COLLECTOR_PISTON_RETRACT_PORT);
     }
-    public void updateCycles()
+    public void encoderStart()
     {
-        CYCLE++;
-        TIME = System.currentTimeMillis()-STIME;
+        manip_shoot_encode.start();
     }
-    public double getCyclesperSecond()
+    public void encoderReset()
     {
-        long tempTime = TIME;
-        updateCycles();
-        double cperS = CYCLE/TIME;
-        return cperS;
+        manip_shoot_encode.reset();
     }
+    
 }

@@ -39,26 +39,26 @@ public class BTVector
     }
     
     /**
-     * Constructor for Vector class that uses the directional and magnitude form to define a vector
+     * Constructor for Vector class that uses the directional and Mag form to define a vector
      * 
-     * @param Mag Value of the magnitude of the vector
+     * @param Mag Value of the Mag of the vector
      * @param Angle The direction of the vector
      * @param isDegrees Whether the angle is in degree or radians, true if degrees, false if radians
      */
-    public BTVector (double magnitude, double angle, boolean isDegrees)
+    public BTVector (double Mag, double Angle, boolean isDegrees)
     {
         double answeri;
         double answerj;
         
         if (isDegrees)
         {
-            answeri = magnitude*Math.cos(Math.toRadians(angle));
-            answerj = magnitude*Math.sin(Math.toRadians(angle));
+            answeri = Mag*Math.cos(Math.toRadians(Angle));
+            answerj = Mag*Math.sin(Math.toRadians(Angle));
         }
         else
         {
-            answeri = magnitude*Math.cos(angle);
-            answerj = magnitude*Math.sin(angle);
+            answeri = Mag*Math.cos(Angle);
+            answerj = Mag*Math.sin(Angle);
         }
         i = answeri;
         j = answerj;

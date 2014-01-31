@@ -10,4 +10,6 @@ package bt.storage.motor;
  */
 public interface BTMotorFactory {
     public BTMotor makeMotor(int port);
+    public BTCanJaguar makeCanMotor(int port);
+    public BTJaguar makeJagMotor(int port);
 }

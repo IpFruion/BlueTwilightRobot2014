@@ -32,7 +32,7 @@ public class BTCanJaguar implements BTMotor {
         }
         catch (Exception e)
         {
-            debug.write(Constants.DebugLocation.BTMotor, Constants.Severity.SEVERE, "ERROR: Motor not initiated at port: "+port+" Exception: "+e.getMessage());
+            debug.write(Constants.DebugLocation.BTMotor, Constants.Severity.SEVERE, "ERROR: Motor not initiated at port: "+port+" Exception: "+e.toString());
         }
     }
     private void setVoltageMode(boolean isVoltage)
@@ -41,8 +41,8 @@ public class BTCanJaguar implements BTMotor {
         {
             try {
                 motor.changeControlMode(CANJaguar.ControlMode.kVoltage);
-            } catch (CANTimeoutException ex) {
-                
+            } catch (Exception ex) {
+                debug.write(Constants.DebugLocation.BTMotor, Constants.Severity.SEVERE, "Error Setting Voltage: "+isVoltage+" at port: "+port+" Exception: "+ex.toString());
             }
         }
     }
@@ -54,7 +54,7 @@ public class BTCanJaguar implements BTMotor {
         try {
             motor.setX(x);
         } catch (CANTimeoutException ex) {
-            debug.write(Constants.DebugLocation.BTMotor, Constants.Severity.SEVERE, "Can't set val: "+x+" at port: "+port);
+            debug.write(Constants.DebugLocation.BTMotor, Constants.Severity.SEVERE, "Can't set val: "+x+" at port: "+port+" ("+ex.toString()+")");
         }
     }
 
@@ -62,7 +62,7 @@ public class BTCanJaguar implements BTMotor {
         try {
             motor.setVoltageRampRate(ramprate);
         } catch (CANTimeoutException ex) {
-            
+            debug.write(Constants.DebugLocation.BTMotor, Constants.Severity.SEVERE, "Can't Set Ramp Rate on port: "+port+" To Value: "+ramprate+" ("+ex.toString()+")");
         }
     }
 
@@ -96,7 +96,7 @@ public class BTCanJaguar implements BTMotor {
     {
         private boolean isVoltage;
         private BTDebugger debug;
-        public BTMotor makeMotor(int port) {
+        public BTCanJaguar makeCanMotor(int port) {
             return new BTCanJaguar(port,isVoltage, debug);
         }
         public Factory(boolean isVoltage, BTDebugger debug)
@@ -108,6 +108,14 @@ public class BTCanJaguar implements BTMotor {
         {
             this.isVoltage = false;
             this.debug = debug;
+        }
+
+        public BTMotor makeMotor(int port) {
+            return new BTCanJaguar(port, isVoltage, debug);
+        }
+
+        public BTJaguar makeJagMotor(int port) {
+            return null;
         }
     }
 }
