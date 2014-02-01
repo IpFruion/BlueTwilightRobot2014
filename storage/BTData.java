@@ -8,6 +8,7 @@ import bt.storage.motor.BTCanJaguar;
 import bt.storage.motor.BTJaguar;
 import bt.storage.motor.BTMotor;
 import bt.storage.motor.BTMotorFactory;
+import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.Encoder;
 
 /**
@@ -25,6 +26,8 @@ public class BTData {
     public BTMotor manipWinch;
     public BTMotor reloadMotor;
     public BTMotor hingeMotor;
+    public AnalogPotentiometer hingePOT;
+    public AnalogPotentiometer collectorPOT;
     
     public Encoder left_encode;
     public Encoder right_encode;
@@ -71,9 +74,11 @@ public class BTData {
 //        right_encode = new Encoder(Constants.RIGHT_ENCODE_A, Constants.RIGHT_ENCODE_B);
 //        left_encode.setDistancePerPulse(Constants.WHEEL_CIRCUMFERENCE/Constants.ENCODER_TEETH);
 //        right_encode.setDistancePerPulse(Constants.WHEEL_CIRCUMFERENCE/Constants.ENCODER_TEETH);
+        
         manip_shoot_encode = new Encoder(Constants.MANIP_SHOOT_ENCODE_A, Constants.MANIP_SHOOT_ENCODE_B);
         manip_shoot_encode.setDistancePerPulse(Constants.MANIP_WHEEL_CIRCUMFERENCE/Constants.ENCODER_TEETH);
-        
+//        hingePOT = new AnalogPotentiometer(Constants.HINGE_POT_CHANNEL);
+//        collectorPOT = new AnalogPotentiometer(Constants.COLLECTOR_POT_CHANNEL);
         //SHOOTER PISTON
 //        manipRelease = new BTPiston(Constants.MANIP_RELEASE_EXTEND_PORT,Constants.MANIP_RELEASE_RETRACT_PORT);
 //        collectorPiston = new BTPiston(Constants.COLLECTOR_PISTON_EXTEND_PORT,Constants.COLLECTOR_PISTON_RETRACT_PORT);

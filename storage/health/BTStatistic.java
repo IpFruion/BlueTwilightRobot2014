@@ -32,14 +32,17 @@ public abstract class BTStatistic
             this.val = val;
             updateVal(val);
         }
-        public void updateVal(boolean val)
+        public void display()
         {
-            this.val = val;
             if (isDisplayed)
             {
                 SmartDashboard.putBoolean(name, val);
             }
-            
+        }
+        public void updateVal(boolean val)
+        {
+            this.val = val;
+            display();
             //TODO: add code to check against perams
         }
     }
@@ -50,15 +53,20 @@ public abstract class BTStatistic
         public BTStatString(String valname,String groupName, String val, boolean isDisplayed)
         {
             super(valname,groupName,isDisplayed);
+            this.val = val;
             updateVal(val);
         }
-        public void updateVal(String val)
+        public void display()
         {
-            this.val = val;
             if (isDisplayed)
             {
                 SmartDashboard.putString(name, val);
             }
+        }
+        public void updateVal(String val)
+        {
+            this.val = val;
+            display();
             //TODO: add code to check against perams
         }
     }
@@ -69,15 +77,20 @@ public abstract class BTStatistic
         public BTStatNum(String valname,String groupName, double val, boolean isDisplayed)
         {
             super(valname,groupName,isDisplayed);
+            this.val = val;
             updateVal(val);
         }
-        public void updateVal(double val)
+        public void display()
         {
-            this.val = val;
             if (isDisplayed)
             {
                 SmartDashboard.putNumber(name, val);
             }
+        }
+        public void updateVal(double val)
+        {
+            this.val = val;
+            display();
             //TODO: add code to check against perams
         }
     }

@@ -145,10 +145,12 @@ public interface Constants {
     public static final int MANIP_SHOOT_ENCODE_A = 3;
     public static final int MANIP_SHOOT_ENCODE_B = 4;
     public static final double MANIP_WHEEL_CIRCUMFERENCE = Math.PI*2;
-    public static final int MANIP_RELEASE_EXTEND_PORT = 2;
-    public static final int MANIP_RELEASE_RETRACT_PORT = 3;
+    public static final int MANIP_RELEASE_EXTEND_PORT = 12;
+    public static final int MANIP_RELEASE_RETRACT_PORT = 13;
     public static final int COLLECTOR_PISTON_EXTEND_PORT = 2;
     public static final int COLLECTOR_PISTON_RETRACT_PORT = 3;
+    public static final int HINGE_POT_CHANNEL = 1;
+    public static final int COLLECTOR_POT_CHANNEL = 2;
     
     //Climber
     //TODO: Creat Climber Constants
